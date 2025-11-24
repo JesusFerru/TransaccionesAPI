@@ -1,0 +1,62 @@
+## Objetos y Ejecutables Binarios ##
+# Directorios de compilación para todos los proyectos
+[Bb]in/
+[Oo]bj/
+[Dd]ebug/
+[Rr]elease/
+*.dll
+*.exe
+*.pdb
+*.suo
+*.user
+*.config
+*.log
+*.zip
+
+# Paquetes NuGet
+*.nupkg
+# Cache global de paquetes
+**/packages/
+# Archivos de caché de restauración de NuGet (opcional)
+.nuget/packages/
+
+## Visual Studio / IDE ##
+# Solución de usuario y archivos de estado
+*.user
+*.suo
+
+# Archivos de solución (si no quieres subir la solución completa)
+# Si tu archivo .sln está en la raíz, puedes omitir esta línea
+*.sln.ide/
+.vs/
+
+# Archivos de caché del diseñador de VS
+*.designer.cs.meta
+
+# Archivos de metadatos de Xamarin
+*.csproj.user
+*.xproj.user
+
+## Archivos Temporales ##
+# Archivos de prueba y temporales
+TestResults/
+*.tmp
+temp/
+# Archivos de backup generados por el editor
+*~
+
+## Generados por Herramientas .NET (como dotnet test) ##
+[Tt]emp/
+[Rr]esultados/
+
+# Archivos de publicación (si no quieres subir la salida de `dotnet publish`)
+publish/
+
+# Cobertura de código (ej: OpenCover)
+*.opencover
+
+# Directorios de herramientas de CI/CD (ej: Azure Pipelines)
+.azuredevops/
+
+# Archivos generados por scaffold/migraciones de EF Core
+Migrations/
