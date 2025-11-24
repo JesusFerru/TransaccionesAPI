@@ -1,0 +1,17 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Transacciones.Core.Entities.CuentaAggregate;
+
+namespace Transacciones.Infrastructure.Data.Configuration
+{
+    public class CuentaConfiguration : IEntityTypeConfiguration<Cuenta>
+    {
+        public void Configure(EntityTypeBuilder<Cuenta> builder)
+        {
+            builder.ToTable(nameof(Cuenta));
+
+            builder.HasKey(t => t.Id);
+
+        }
+    }
+}
