@@ -1,9 +1,10 @@
 ﻿using Transacciones.Core.Entities.TransaccionAggregate;
 using Transacciones.Core.SharedKernel;
+using Transacciones.Core.SharedKernel.Interfaces;
 
 namespace Transacciones.Core.Entities.CuentaAggregate
 {
-    public class Cuenta : BaseEntity
+    public class Cuenta : BaseEntity, IAggregateRoot
     {
         public required string NumeroCuenta { get; set; }
         public required decimal Saldo { get; set; }

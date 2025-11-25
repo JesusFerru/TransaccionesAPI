@@ -24,6 +24,10 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 
+builder.Services.AddHttpLogging(logging =>
+{
+    logging.LoggingFields = Microsoft.AspNetCore.HttpLogging.HttpLoggingFields.All;
+});
 
 builder.Services.AddProblemDetails(option =>
 {

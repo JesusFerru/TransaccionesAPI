@@ -1,0 +1,56 @@
+using Ardalis.ApiEndpoints;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
+using System.Net.Mime;
+using Transacciones.Core.Interfaces;
+
+namespace Transacciones.API.Endpoints.Cuentas
+{
+    public class GetCuentaByIdRequest
+    {
+        [FromRoute(Name = "id")]
+        public int Id { get; set; }
+    }
+
+    public class CuentaResponse
+    {
+        public int Id { get; set; }
+        public string NumeroCuenta { get; set; } = string.Empty;
+        public decimal Saldo { get; set; }
+        public string Titular { get; set; } = string.Empty;
+        public DateTime FechaCreacion { get; set; }
+        public bool Activa { get; set; }
+    }
+
+    public class GetById : EndpointBaseAsync
+        .WithRequest<GetCuentaByIdRequest>
+        .WithActionResult<CuentaResponse>
+    {
+        private readonly ICuentaService _cuentaService;
+        private readonly IMapper _mapper;
+
+        public GetById(ICuentaService cuentaService, IMapper mapper)
+        {
+            _cuentaService = cuentaService;
+            _mapper = mapper;
+        }
+
+        [HttpGet("/api/cuentas/{id}")]
+        [SwaggerOperation(
+            Summary = "Obtener cuenta por ID",
+            Description = "Obtiene los detalles de una cuenta específica por su ID.",
+            OperationId = "Cuenta.GetById",
+            Tags = new[] { "Cuentas" })
+        ]
+        [Produces(MediaTypeNames.Application.Json)]
+        [ProducesResponseType(typeof(CuentaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        public override async Task<ActionResult<CuentaResponse>> HandleAsync([FromRoute] GetCuentaByIdRequest request, CancellationToken cancellationToken = default)
+        {
+            var cuenta = await _cuentaService.ObtenerCuentaPorIdAsync(request.Id);
+            var response = _mapper.Map<CuentaResponse>(cuenta);
+            return Ok(response);
+        }
+    }
+}
