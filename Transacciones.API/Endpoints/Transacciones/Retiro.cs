@@ -33,11 +33,14 @@ namespace Transacciones.API.Endpoints.Transacciones
             OperationId = "Transaccion.Retiro",
             Tags = new[] { "Transacciones" })
         ]
+        [Consumes(MediaTypeNames.Application.Json)]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(RetiroResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public override async Task<ActionResult<RetiroResponse>> HandleAsync([FromBody] RetiroRequest request, CancellationToken cancellationToken = default)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);

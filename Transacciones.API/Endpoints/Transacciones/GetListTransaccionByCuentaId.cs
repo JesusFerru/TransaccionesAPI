@@ -31,6 +31,7 @@ namespace Transacciones.API.Endpoints.Transacciones
         ]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(IEnumerable<TransaccionResponse>), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public override async Task<ActionResult<IEnumerable<TransaccionResponse>>> HandleAsync([FromRoute] GetTransaccionesByCuentaIdRequest request, CancellationToken cancellationToken = default)
         {

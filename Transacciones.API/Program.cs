@@ -2,6 +2,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.HttpLogging;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using System.Reflection;
 using Transacciones.API.Endpoints.Cuentas;
 using Transacciones.API.Endpoints.Transacciones;
 using Transacciones.API.Filters;
@@ -94,7 +95,9 @@ builder.Services.AddSwaggerGen(options =>
     };
 
     options.AddSecurityRequirement(securityRequirement);
-
+    // XML comments
+    var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+    options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
     options.EnableAnnotations();
 });
 

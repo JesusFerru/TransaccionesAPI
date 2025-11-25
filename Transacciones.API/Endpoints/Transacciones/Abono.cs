@@ -36,8 +36,10 @@ namespace Transacciones.API.Endpoints.Transacciones
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(AbonoResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public override async Task<ActionResult<AbonoResponse>> HandleAsync([FromBody] AbonoRequest request, CancellationToken cancellationToken = default)
         {
             var validationResult = await _validator.ValidateAsync(request, cancellationToken);

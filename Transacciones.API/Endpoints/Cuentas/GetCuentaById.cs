@@ -31,7 +31,9 @@ namespace Transacciones.API.Endpoints.Cuentas
         ]
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(CuentaResponse), StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public override async Task<ActionResult<CuentaResponse>> HandleAsync([FromRoute] GetCuentaByIdRequest request, CancellationToken cancellationToken = default)
         {
             var cuenta = await _cuentaService.ObtenerCuentaPorIdAsync(request.Id, cancellationToken);

@@ -40,7 +40,9 @@ namespace Transacciones.API.Endpoints.Cuentas
         [Produces(MediaTypeNames.Application.Json)]
         [ProducesResponseType(typeof(CreateCuentaResponse), StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+
         public override async Task<ActionResult<CreateCuentaResponse>> HandleAsync(
             [FromBody] CreateCuentaRequest request,
             CancellationToken cancellationToken = default)
