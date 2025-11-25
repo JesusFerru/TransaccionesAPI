@@ -21,4 +21,9 @@
     <Using Include="Xunit" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Transacciones.Core\Transacciones.Core.csproj" />
+    <ProjectReference Include="..\Transacciones.Infrastructure\Transacciones.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
