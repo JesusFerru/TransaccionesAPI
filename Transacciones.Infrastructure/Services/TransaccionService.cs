@@ -23,7 +23,7 @@ namespace Transacciones.Infrastructure.Services
             var cuenta = await _cuentaRepository.GetByIdAsync(cuentaId, cancellationToken);
             if (cuenta == null)
             {
-                throw new KeyNotFoundException($"No se encontró la cuenta con ID {cuentaId}");
+                throw new NotFoundException($"No se encontró la cuenta con ID {cuentaId}");
             }
 
             cuenta.Saldo += monto;
@@ -54,7 +54,7 @@ namespace Transacciones.Infrastructure.Services
             var cuenta = await _cuentaRepository.GetByIdAsync(cuentaId, cancellationToken);
             if (cuenta == null)
             {
-                throw new KeyNotFoundException($"No se encontró la cuenta con ID {cuentaId}");
+                throw new NotFoundException($"No se encontró la cuenta con ID {cuentaId}");
             }
 
             if (cuenta.Saldo < monto)

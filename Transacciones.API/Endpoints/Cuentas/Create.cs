@@ -11,21 +11,6 @@ using Transacciones.Core.SharedKernel.Interfaces;
 
 namespace Transacciones.API.Endpoints.Cuentas
 {
-    public class CreateCuentaRequest
-    {
-        public required string NumeroCuenta { get; set; }
-        public required decimal SaldoInicial { get; set; }
-        public required string Titular { get; set; }
-    }
-
-    public class CreateCuentaResponse
-    {
-        public int Id { get; set; }
-        public string NumeroCuenta { get; set; } = string.Empty;
-        public decimal Saldo { get; set; }
-        public string Titular { get; set; } = string.Empty;
-        public bool Activa { get; set; }
-    }
 
     public class Create : EndpointBaseAsync
         .WithRequest<CreateCuentaRequest>

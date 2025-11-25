@@ -7,21 +7,6 @@ using Transacciones.Core.Interfaces;
 
 namespace Transacciones.API.Endpoints.Transacciones
 {
-    public class GetTransaccionesByCuentaIdRequest
-    {
-        [FromRoute(Name = "id")]
-        public int CuentaId { get; set; }
-    }
-
-    public class TransaccionResponse
-    {
-        public int Id { get; set; }
-        public int CuentaId { get; set; }
-        public string TipoTransaccion { get; set; } = string.Empty;
-        public decimal Monto { get; set; }
-        public DateTime FechaTransaccion { get; set; }
-        public string Descripcion { get; set; } = string.Empty;
-    }
 
     public class GetListTransaccionByCuentaId : EndpointBaseAsync
         .WithRequest<GetTransaccionesByCuentaIdRequest>

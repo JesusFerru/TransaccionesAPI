@@ -9,19 +9,6 @@ using Transacciones.Core.SharedKernel.Interfaces;
 
 namespace Transacciones.API.Endpoints.Transacciones
 {
-    public class AbonoRequest
-    {
-        public int CuentaId { get; set; }
-        public decimal Monto { get; set; }
-        public string Descripcion { get; set; } = string.Empty;
-    }
-
-    public class AbonoResponse
-    {
-        public int TransaccionId { get; set; }
-        public decimal NuevoSaldo { get; set; }
-        public string Mensaje { get; set; } = string.Empty;
-    }
 
     public class Abono : EndpointBaseAsync
         .WithRequest<AbonoRequest>
