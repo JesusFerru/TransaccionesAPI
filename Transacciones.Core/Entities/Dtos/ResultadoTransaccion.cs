@@ -1,6 +1,6 @@
-namespace Transacciones.API.Endpoints.Transacciones
+﻿namespace Transacciones.Core.Entities.Dtos
 {
-    public class RetiroResponse
+    public class ResultadoTransaccion
     {
         public decimal SaldoAnterior { get; set; }
         public decimal NuevoSaldo { get; set; }

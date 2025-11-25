@@ -10,6 +10,7 @@ using Transacciones.Core.SharedKernel.Interfaces;
 namespace Transacciones.API.Endpoints.Transacciones
 {
 
+    [ServiceFilter(typeof(Filters.ApiKeyAuthorizationFilter))]
     public class Retiro : EndpointBaseAsync
         .WithRequest<RetiroRequest>
         .WithActionResult<RetiroResponse>
@@ -54,7 +55,7 @@ namespace Transacciones.API.Endpoints.Transacciones
 
                 return Ok(new RetiroResponse
                 {
-                    TransaccionId = resultado.TransaccionId,
+                    SaldoAnterior = resultado.SaldoAnterior,
                     NuevoSaldo = resultado.NuevoSaldo,
                     Mensaje = resultado.Mensaje
                 });

@@ -10,6 +10,7 @@ using Transacciones.Core.SharedKernel.Interfaces;
 namespace Transacciones.API.Endpoints.Transacciones
 {
 
+    [ServiceFilter(typeof(Filters.ApiKeyAuthorizationFilter))]
     public class Abono : EndpointBaseAsync
         .WithRequest<AbonoRequest>
         .WithActionResult<AbonoResponse>
@@ -54,7 +55,7 @@ namespace Transacciones.API.Endpoints.Transacciones
 
                 return Ok(new AbonoResponse
                 {
-                    TransaccionId = resultado.TransaccionId,
+                    SaldoAnterior = resultado.SaldoAnterior,
                     NuevoSaldo = resultado.NuevoSaldo,
                     Mensaje = resultado.Mensaje
                 });

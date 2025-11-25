@@ -1,4 +1,5 @@
 using Transacciones.Core.Entities.CuentaAggregate;
+using Transacciones.Core.Entities.Dtos;
 using Transacciones.Core.Entities.TransaccionAggregate;
 using Transacciones.Core.Entities.TransaccionAggregate.Specifications;
 using Transacciones.Core.Exceptions;
@@ -26,6 +27,7 @@ namespace Transacciones.Infrastructure.Services
                 throw new NotFoundException($"No se encontró la cuenta con ID {cuentaId}");
             }
 
+            var saldoAnterior = cuenta.Saldo;
             cuenta.Saldo += monto;
             await _cuentaRepository.UpdateAsync(cuenta, cancellationToken);
 
@@ -43,7 +45,7 @@ namespace Transacciones.Infrastructure.Services
 
             return new ResultadoTransaccion
             {
-                TransaccionId = transaccion.Id,
+                SaldoAnterior = saldoAnterior,
                 NuevoSaldo = cuenta.Saldo,
                 Mensaje = "Abono realizado exitosamente."
             };
@@ -62,6 +64,7 @@ namespace Transacciones.Infrastructure.Services
                 throw new BadRequestException("Saldo insuficiente para realizar el retiro.");
             }
 
+            var saldoAnterior = cuenta.Saldo;
             cuenta.Saldo -= monto;
             await _cuentaRepository.UpdateAsync(cuenta, cancellationToken);
 
@@ -79,7 +82,7 @@ namespace Transacciones.Infrastructure.Services
 
             return new ResultadoTransaccion
             {
-                TransaccionId = transaccion.Id,
+                SaldoAnterior = saldoAnterior,
                 NuevoSaldo = cuenta.Saldo,
                 Mensaje = "Retiro realizado exitosamente."
             };
@@ -89,7 +92,7 @@ namespace Transacciones.Infrastructure.Services
         {
             var spec = new TransaccionesPorCuentaSpec(cuentaId);
 
-            return await _transaccionRepository.ListAsync(new TransaccionesPorCuentaSpec(cuentaId), cancellationToken);
+            return await _transaccionRepository.ListAsync(spec, cancellationToken);
         }
     }
 }

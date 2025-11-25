@@ -12,6 +12,7 @@ using Transacciones.Core.SharedKernel.Interfaces;
 namespace Transacciones.API.Endpoints.Cuentas
 {
 
+    [ServiceFilter(typeof(Filters.ApiKeyAuthorizationFilter))]
     public class Create : EndpointBaseAsync
         .WithRequest<CreateCuentaRequest>
         .WithActionResult<CreateCuentaResponse>

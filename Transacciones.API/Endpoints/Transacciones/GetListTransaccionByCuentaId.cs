@@ -8,6 +8,7 @@ using Transacciones.Core.Interfaces;
 namespace Transacciones.API.Endpoints.Transacciones
 {
 
+    [ServiceFilter(typeof(Filters.ApiKeyAuthorizationFilter))]
     public class GetListTransaccionByCuentaId : EndpointBaseAsync
         .WithRequest<GetTransaccionesByCuentaIdRequest>
         .WithActionResult<IEnumerable<TransaccionResponse>>

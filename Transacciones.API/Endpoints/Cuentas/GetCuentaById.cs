@@ -8,6 +8,7 @@ using Transacciones.Core.Interfaces;
 namespace Transacciones.API.Endpoints.Cuentas
 {
 
+    [ServiceFilter(typeof(Filters.ApiKeyAuthorizationFilter))]
     public class GetCuentaById : EndpointBaseAsync
         .WithRequest<GetCuentaByIdRequest>
         .WithActionResult<CuentaResponse>
