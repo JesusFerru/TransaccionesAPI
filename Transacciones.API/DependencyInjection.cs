@@ -1,6 +1,11 @@
 ﻿namespace Transacciones.API
 {
-    public class DependencyInjection
+    public static class DependencyInjection
     {
+        public static IHostApplicationBuilder AddPresentation(this IHostApplicationBuilder builder)
+        {
+
+            return builder;
+        }
     }
 }

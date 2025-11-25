@@ -13,6 +13,9 @@
 *.log
 *.zip
 
+# Settings
+appsettings.json
+
 # Paquetes NuGet
 *.nupkg
 # Cache global de paquetes
