@@ -44,6 +44,8 @@ builder.Services.AddExceptionHandler<HandleException>();
 
 builder.Services.AddScoped<IValidator<CreateCuentaRequest>, CreateCuentaValidator>();
 builder.Services.AddScoped<IValidator<GetCuentaByIdRequest>, GetCuentaByIdValidator>();
+builder.Services.AddScoped<IValidator<Transacciones.API.Endpoints.Transacciones.AbonoRequest>, AbonoRequestValidator>();
+builder.Services.AddScoped<IValidator<Transacciones.API.Endpoints.Transacciones.RetiroRequest>, RetiroRequestValidator>();
 
 
 

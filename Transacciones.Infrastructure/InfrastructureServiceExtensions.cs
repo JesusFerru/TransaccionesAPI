@@ -20,6 +20,7 @@ namespace Transacciones.Infrastructure
 
             // services
             services.AddScoped<ICuentaService, CuentaService>();
+            services.AddScoped<ITransaccionService, TransaccionService>();
 
 
             var connectionString = configuration.GetConnectionString("DefaultConnection")
