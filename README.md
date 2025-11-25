@@ -18,10 +18,10 @@ Por motivos de seguridad, el archivo de configuración `appsettings.json` que co
 {
   "Logging": { ... },
   "ConnectionStrings": {
-    "DefaultConnection": "TU_CADENA_DE_CONEXION_A_NEON"
+    "DefaultConnection": "CADENA_DE_CONEXION_A_NEON"
   },
   "Security": {
-    "ApiKey": "TU_API_KEY_SECRETA"
+    "ApiKey": "API_KEY_SECRETA"
   }
 }
 ```
@@ -53,6 +53,10 @@ Para ejecutar la API localmente:
     ```
 3.  La API estará disponible en `http://localhost:5169` (o el puerto configurado).
 4.  Puedes acceder a la documentación Swagger en: `http://localhost:5169/swagger`
+
+### Autenticación en Pruebas (Postman/Insomnia)
+Para consumir los endpoints, debes incluir el header `Authorization` con el valor `Bearer <TU_API_KEY>`.
+Ejemplo: `Authorization: Bearer ey5ApiKeySecreta...oc`
 
 ## Ejecución de Tests
 
