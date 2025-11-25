@@ -1,4 +1,5 @@
-﻿using Transacciones.Core.SharedKernel;
+﻿using Transacciones.Core.Entities.TransaccionAggregate;
+using Transacciones.Core.SharedKernel;
 
 namespace Transacciones.Core.Entities.CuentaAggregate
 {
@@ -9,5 +10,7 @@ namespace Transacciones.Core.Entities.CuentaAggregate
         public required string Titular { get; set; }
         public DateTime FechaCreacion { get; set; }
         public required bool Activa { get; set; }
+        public ICollection<Transaccion> Transacciones { get; set; } = new List<Transaccion>();
+
     }
 }
