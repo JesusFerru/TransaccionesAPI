@@ -13,5 +13,6 @@ namespace Transacciones.Core.Interfaces
     {
         Task<ResultadoTransaccion> RealizarAbonoAsync(int cuentaId, decimal monto, string descripcion, CancellationToken cancellationToken);
         Task<ResultadoTransaccion> RealizarRetiroAsync(int cuentaId, decimal monto, string descripcion, CancellationToken cancellationToken);
+        Task<IEnumerable<Transaccion>> ObtenerHistorialAsync(int cuentaId, CancellationToken cancellationToken);
     }
 }

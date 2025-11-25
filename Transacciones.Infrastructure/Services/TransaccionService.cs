@@ -1,5 +1,6 @@
 using Transacciones.Core.Entities.CuentaAggregate;
 using Transacciones.Core.Entities.TransaccionAggregate;
+using Transacciones.Core.Entities.TransaccionAggregate.Specifications;
 using Transacciones.Core.Exceptions;
 using Transacciones.Core.Interfaces;
 using Transacciones.Core.SharedKernel.Interfaces;
@@ -31,7 +32,7 @@ namespace Transacciones.Infrastructure.Services
             var transaccion = new Transaccion
             {
                 CuentaId = cuentaId,
-                TipoTransaccion = "ABONO",
+                TipoTransaccion = TipoTransaccionEnum.ABONO,
                 Monto = monto,
                 FechaTransaccion = DateTime.UtcNow,
                 Descripcion = descripcion,
@@ -67,7 +68,7 @@ namespace Transacciones.Infrastructure.Services
             var transaccion = new Transaccion
             {
                 CuentaId = cuentaId,
-                TipoTransaccion = "RETIRO",
+                TipoTransaccion = TipoTransaccionEnum.RETIRO,
                 Monto = monto,
                 FechaTransaccion = DateTime.UtcNow,
                 Descripcion = descripcion,
@@ -82,6 +83,13 @@ namespace Transacciones.Infrastructure.Services
                 NuevoSaldo = cuenta.Saldo,
                 Mensaje = "Retiro realizado exitosamente."
             };
+        }
+
+        public async Task<IEnumerable<Transaccion>> ObtenerHistorialAsync(int cuentaId, CancellationToken cancellationToken)
+        {
+            var spec = new TransaccionesPorCuentaSpec(cuentaId);
+
+            return await _transaccionRepository.ListAsync(new TransaccionesPorCuentaSpec(cuentaId), cancellationToken);
         }
     }
 }
