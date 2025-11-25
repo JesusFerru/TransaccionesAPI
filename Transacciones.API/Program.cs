@@ -1,7 +1,10 @@
+using FluentValidation;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using Transacciones.API.Endpoints.Cuentas;
 using Transacciones.API.Mapper;
 using Transacciones.API.Middleware;
+using Transacciones.API.Validators;
 using Transacciones.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -38,6 +41,11 @@ builder.Services.AddProblemDetails(option =>
     };
 });
 builder.Services.AddExceptionHandler<HandleException>();
+
+builder.Services.AddScoped<IValidator<CreateCuentaRequest>, CreateCuentaValidator>();
+builder.Services.AddScoped<IValidator<GetCuentaByIdRequest>, GetCuentaByIdValidator>();
+
+
 
 builder.Services.AddCors(policy =>
 {

@@ -23,14 +23,14 @@ namespace Transacciones.API.Endpoints.Cuentas
         public bool Activa { get; set; }
     }
 
-    public class GetById : EndpointBaseAsync
+    public class GetCuentaById : EndpointBaseAsync
         .WithRequest<GetCuentaByIdRequest>
         .WithActionResult<CuentaResponse>
     {
         private readonly ICuentaService _cuentaService;
         private readonly IMapper _mapper;
 
-        public GetById(ICuentaService cuentaService, IMapper mapper)
+        public GetCuentaById(ICuentaService cuentaService, IMapper mapper)
         {
             _cuentaService = cuentaService;
             _mapper = mapper;
@@ -40,7 +40,7 @@ namespace Transacciones.API.Endpoints.Cuentas
         [SwaggerOperation(
             Summary = "Obtener cuenta por ID",
             Description = "Obtiene los detalles de una cuenta específica por su ID.",
-            OperationId = "Cuenta.GetById",
+            OperationId = "Cuenta.GetCuentaById",
             Tags = new[] { "Cuentas" })
         ]
         [Produces(MediaTypeNames.Application.Json)]
@@ -48,7 +48,7 @@ namespace Transacciones.API.Endpoints.Cuentas
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public override async Task<ActionResult<CuentaResponse>> HandleAsync([FromRoute] GetCuentaByIdRequest request, CancellationToken cancellationToken = default)
         {
-            var cuenta = await _cuentaService.ObtenerCuentaPorIdAsync(request.Id);
+            var cuenta = await _cuentaService.ObtenerCuentaPorIdAsync(request.Id, cancellationToken);
             var response = _mapper.Map<CuentaResponse>(cuenta);
             return Ok(response);
         }

@@ -2,9 +2,9 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Transacciones.Core.Interfaces;
-using Transacciones.Core.Services;
 using Transacciones.Core.SharedKernel.Interfaces;
 using Transacciones.Infrastructure.Data;
+using Transacciones.Infrastructure.Services;
 
 namespace Transacciones.Infrastructure
 {
@@ -14,6 +14,9 @@ namespace Transacciones.Infrastructure
         {
             services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
                     .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>));
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 
             // services
             services.AddScoped<ICuentaService, CuentaService>();
